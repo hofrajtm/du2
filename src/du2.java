@@ -4,8 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import static java.lang.Math.sqrt;
+import java.util.Locale;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static jdk.nashorn.internal.runtime.regexp.joni.Syntax.Java;
 
 /*
@@ -24,6 +28,7 @@ public class du2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
+        Locale.setDefault(new Locale("en", "US"));
         // Vypíše funkci programu a defaultní nastavení parametrů 'p' a 's'.
         System.out.println("Program pro interpolaci naměřených dat metodou inverzní vážené vzdálenosti (IDW).");
         System.out.println("Defaultní nastavení: exponent ve váhové funkci 'p' = 2");
@@ -69,7 +74,7 @@ public class du2 {
         /* Uživatel si vybere, zda změní defaultní nastavení (Y) či nikoliv (N).
         Podle zadaných čísel určí velikost mřížky (šířka x výška).
         Uzná pouze kladné hodnoty, v jiném případě je program ukončen.*/
-        System.out.println("Přejete si změnit hodnoty výšky a šířky1 mřížky? (Y/N)");
+        System.out.println("Přejete si změnit hodnoty výšky a šířky mřížky? (Y/N)");
         int sirka = 100;
         int vyska = 100;
         char vstup_sirka = readChar();
@@ -86,7 +91,7 @@ public class du2 {
                 System.err.println("Hodnota výšky mřížky může být pouze kladná!");
                 System.exit(1);
             }
-        } else if (vstup_s != 'N') {
+        } else if (vstup_sirka != 'N') {
             System.err.println("Byl zadán špatný vstup!");
             System.exit(1);
         }
@@ -110,7 +115,6 @@ public class du2 {
             for (int i = 0; i < pocet_radku; i++) {
                 radek = br.readLine();
                 String [] string_hodnoty = radek.split(",");
-                System.out.println(radek);
                 double [] hodnoty = new double[]{
                     Double.parseDouble(string_hodnoty[0]),
                     Double.parseDouble(string_hodnoty[1]),
@@ -128,29 +132,39 @@ public class du2 {
                 data[i] = hodnoty;
             }
             
-             
-            
-        
-            for (double x = min_x; x <= max_x; x += (max_x-min_x)/sirka) {
-                for (double y = min_y; y <= max_y; y += (max_y-min_y)/vyska) {
-                    double v_celkova = 0;
-                    double z0 = 0;
-                                        
-                    for (int i = 0; i < pocet_radku; i++) {
-                        double v=sqrt((x-data[i][0])*(x-data[i][0])+(y-data[i][1])*(y-data[i][1]));
-                        v_celkova += v;
-                    }
-                    
-                    for (int i = 0; i < pocet_radku; i++) {
-                        double v=sqrt((x-data[i][0])*(x-data[i][0])+(y-data[i][1])*(y-data[i][1]));
-                        double l = (1/Math.pow(v, p))/(1/Math.pow(v_celkova, p));
+            PrintWriter writer;
+            try {
+                writer = new PrintWriter("out.csv");
+                writer.println(sirka*vyska);
+                for (double x = min_x; x <= max_x; x += (max_x-min_x)/sirka) {
+                    for (double y = min_y; y <= max_y; y += (max_y-min_y)/vyska) {
+                        double l_spodni = 0;
+                        double z0 = 0;
+
+                        for (int i = 0; i < pocet_radku; i++) {
+                            double v=sqrt((x-data[i][0])*(x-data[i][0])+(y-data[i][1])*(y-data[i][1]));
+                            l_spodni += 1/Math.pow(v, p);
+                        }
+
+                        for (int i = 0; i < pocet_radku; i++) {
+                            double v=sqrt((x-data[i][0])*(x-data[i][0])+(y-data[i][1])*(y-data[i][1]));
+                            double l = (1/Math.pow(v + s, p))/(l_spodni);
+
+                            z0 += l * data[i][2];
+                        } 
+                        writer.printf("%f,%f,%f\n", x, y, z0);
                         
-                        z0 += l * data[i][2];
-                    } 
-                    
-                    System.out.println(z0);
+                    }
                 }
+                writer.close();
+            } catch (FileNotFoundException ex) {
+                System.err.format("Soubor %s nebyl nalezen!","out.csv");
+                System.exit(1);
+            } catch (IOException ex) {
+                System.err.print("Vyskytla se chyba při ukládání hodnot do řádku!");
+                System.exit(1);
             }
+            
             
         } catch (FileNotFoundException ex) {
             System.err.format("Soubor %s nebyl nalezen!","in.csv");
