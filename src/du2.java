@@ -185,11 +185,6 @@ public class du2 {
         }
     }
     
-    // Metoda pro zaokroulení výsledku na dvě desetinná místo.
-    public static double zaokrouhli(double cislo, double zaokrouhlovac) {
-        return Math.round(cislo * zaokrouhlovac) / zaokrouhlovac;
-    }
-    
     public static int readInt() throws IOException {
         BufferedReader reader;
         reader = new BufferedReader(new InputStreamReader(System.in));
