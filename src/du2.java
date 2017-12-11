@@ -117,7 +117,7 @@ public class du2 {
                     // ve složené závorce si ručně nastavím jenotlivé položky pole a přemění string na double
                     Double.parseDouble(string_hodnoty[0]),
                     Double.parseDouble(string_hodnoty[1]),
-                    Double.parseDouble(string_hodnoty[2]),
+                    Double.parseDouble(string_hodnoty[2])
                 };
                 
                 // pro urychlení operace hledá min a max již při načítání hodnot do proměnné 'hodnoty'
@@ -162,7 +162,7 @@ public class du2 {
                             //výpočet interpolovaných hodnot
                             z0 += lambda * data[i][2];
                         }
-                        
+                        //writer.printf("%.2f, %.2f, %.2f\n", x, y, z0);
                         writer.printf("%.2f,", z0);                        
                     }
                     writer.printf("\n");
