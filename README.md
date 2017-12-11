@@ -19,11 +19,12 @@ Metoda inverzní vážené vzdálenosti je jednou z nejjednodušších a zárove
 je vážený průměr, jehož váhy jsou nepřímo úměrné mocnině vzdálenosti mezi interpolovaným bodem a body se známou naměřenou veličinou.
 Charakteristický je tak vyšší vliv hodnot blízkých interpolovanému bodu, než vzdálenějších a tedy jejich vyšší vliv na výsledek.
 
-Vzorec: , kde *z<sub>0</sub><sup>*</sup>* - hodnota interpolovaného bodu
-              *r<sub>i</sub>* - vzdálenost bodu, kde interpolujeme od i-tého bodu měření
-              *r<sub>j</sub>* - suma vzdáleností mezi bodu, kde interpolujeme od všech bodů měření
-              *α* - exponent ve váhové funkce
-              *s* - vyhlazovací koeficient
+Vzorec: ![alt text](https://github.com/hofrajtm/du2/blob/master/vzorec_vypoctu.gif), kde
+- *z<sub>0</sub><sup>*</sup>* - hodnota interpolovaného bodu
+- *r<sub>i</sub>* - vzdálenost bodu, kde interpolujeme od i-tého bodu měření
+- *r<sub>j</sub>* - suma vzdáleností mezi bodu, kde interpolujeme od všech bodů měření
+- *α* - exponent ve váhové funkce
+- *s* - vyhlazovací koeficient
               
 ## Zadávané parametry
 Program je interaktivní a je možné upravovat parametry výpočtu. Volenými parametry jsou: exponent ve váhové funkci, vyhlazovací
