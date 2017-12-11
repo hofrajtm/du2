@@ -29,7 +29,7 @@ Vzorec: ![alt text](https://github.com/hofrajtm/du2/blob/master/vzorec_vypoctu.g
 ## Zadávané parametry
 Program je interaktivní a je možné upravovat parametry výpočtu. Volenými parametry jsou: exponent ve váhové funkci, vyhlazovací
 koeficient a velikost mřížky (šířka x výška).
-Program se vždy uživatele zeptá, zda si přeje změnit přednastavenou hodnotu parametru. Uživatel odpoví stiskem kláevesy (Y/N), tedy
+Program se vždy uživatele zeptá, zda si přeje změnit přednastavenou hodnotu parametru. Uživatel odpoví stiskem klávesy (Y/N), tedy
 ano, či ne.
 Přednastavené hodnoty jsou: exponent ve váhové funkci *p* = 2, vyhlazovací koeficient *s* = 0 a velikost mřížky 100 x 100.
 
@@ -44,3 +44,7 @@ Dalším voleným parametrem je vyhlazovací koeficient *s*, který může nabý
 ### Velikost mřížky
 Posledním voleným parametrem jsou rozměry mřížky, tedy šířka a výška. Tyto parametry je možné vybírat v intervalu <0,∞), v jiném případě
 program skončí. Čím větší je velikost mřížky, tím větší je i počet bodů, ve kterých probíhá interpolace.
+
+## Ukázka interpolace IDW
+![alt text](https://github.com/hofrajtm/du2/blob/master/interpolace_mapa.png)
+Na obrázku jsou zobrazeny body se známýmy hodnotami, v jejich okolí pak interpolované hodnoty odpovídají odstínů, hnědé barvy. Čím světlejší, tím menší hodnota, čím tmavší, tím vyšší hodnota.
