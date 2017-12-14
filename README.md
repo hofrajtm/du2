@@ -42,7 +42,7 @@ Dalším voleným parametrem je vyhlazovací koeficient *s*, který může nabý
 Čím vyšší je hodnota parametru *s*, tím více narůstá míra shlazení interpolační plochy. Nejedná se však již o přesnou interpolaci.
 
 ### Velikost mřížky
-Posledním voleným parametrem jsou rozměry mřížky, tedy šířka a výška. Tyto parametry je možné vybírat v intervalu <0,∞), v jiném případě
+Posledním voleným parametrem jsou rozměry mřížky, tedy šířka a výška. Tyto parametry je možné vybírat v intervalu <0,Int.MAX_VALUE>, v jiném případě
 program skončí. Čím větší je velikost mřížky, tím větší je i počet bodů, ve kterých probíhá interpolace.
 
 ## Ukázka interpolace IDW
