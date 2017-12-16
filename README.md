@@ -27,10 +27,8 @@ Vzorec: ![alt text](https://github.com/hofrajtm/du2/blob/master/vzorec_vypoctu.g
 - *s* - vyhlazovací koeficient
               
 ## Zadávané parametry
-Program je interaktivní a je možné upravovat parametry výpočtu. Volenými parametry jsou: exponent ve váhové funkci, vyhlazovací
+Program je neinteraktivní, avšak je možné upravovat v argumenty parametry výpočtu. Volenými parametry jsou: exponent ve váhové funkci, vyhlazovací
 koeficient a velikost mřížky (šířka x výška).
-Program se vždy uživatele zeptá, zda si přeje změnit přednastavenou hodnotu parametru. Uživatel odpoví stiskem klávesy (Y/N), tedy
-ano, či ne.
 Přednastavené hodnoty jsou: exponent ve váhové funkci *p* = 2, vyhlazovací koeficient *s* = 0 a velikost mřížky 100 x 100.
 
 ### Exponent ve váhové funkci
