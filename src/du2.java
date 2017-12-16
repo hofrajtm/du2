@@ -62,9 +62,9 @@ public class du2 {
 
     public static void main(String[] args) throws IOException {
         Locale.setDefault(new Locale("en", "US")); // nastaví na anglickou lokaci, např. desetinná čárka se změní na tečku
-        Argumenty arguments = new Argumenty(args); // načte parametry z příkazové řádky 
+        Argumenty argumenty = new Argumenty(args); // načte parametry z příkazové řádky 
         double[][] data = nactiVstupniSoubor();
-        ulozVystupniSoubor(arguments, data);
+        ulozVystupniSoubor(argumenty, data);
     }
 
     public static double[][] nactiVstupniSoubor() throws NumberFormatException {
@@ -77,10 +77,10 @@ public class du2 {
             // pole polí obasahující pozici [sloupce] a [řádku]
             data = ctiData(pocet_radku, br);
         } catch (FileNotFoundException ex) {
-            System.err.format("Soubor %s nebyl nalezen!", "in.csv");
+            System.err.format("Vstupní soubor nebyl nalezen!");
             System.exit(1);
         } catch (IOException ex) {
-            System.err.print("Vyskytla se chyba při načítání hodnot z řádku!");
+            System.err.print("Vyskytla se chyba při načítání vstupního souboru!");
             System.exit(1);
         }
         return data;
@@ -119,12 +119,12 @@ public class du2 {
         return data;
     }
     
-    public static double spoctiJmenovatel(double[][] data, double x, double y, Argumenty arguments) {
+    public static double spoctiJmenovatel(double[][] data, double x, double y, Argumenty argumenty) {
         double lambda_jmenovatel = 0;
         // výpočet jmenovatele lambdy
         for (int i = 0; i < data.length; i++) {
             double v = sqrt((x - data[i][0]) * (x - data[i][0]) + (y - data[i][1]) * (y - data[i][1]));
-            lambda_jmenovatel += 1 / Math.pow(v, arguments.p);
+            lambda_jmenovatel += 1 / Math.pow(v, argumenty.p);
         }
         return lambda_jmenovatel;
     }
